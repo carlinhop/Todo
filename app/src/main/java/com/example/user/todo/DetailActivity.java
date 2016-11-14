@@ -1,5 +1,7 @@
 package com.example.user.todo;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -37,18 +39,17 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view){
 
-                String text= mEditText.getText().toString() ;
+                String textToSave = mEditText.getText().toString();
                 Log.d("Todo", "Button clicked ");
 
                 Task task = new Task(text);
 
                 todoList.setTask(task);
+                Context context = view.getContext();
+                SavedTextPreferences.setStoredText(context, textToSave);
 
-
-
-
-
-                finish();
+                Intent intent = new Intent(DetailActivity.this, MainActivity.class);
+                startActivity(intent);
 
 
 

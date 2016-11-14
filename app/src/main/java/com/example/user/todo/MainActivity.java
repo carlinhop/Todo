@@ -31,16 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
         todoList = new TodoList();
 
-        InputStream input = getResources().openRawResource(R.raw.todo_tasks);
-        TextFileTodos taskFile = new TextFileTodos(input);
-
-        for(String taskText: taskFile.getTasks()){
-             Task task = new Task(taskText);
-            todoList.setTask(task);
-        }
+        String savedText = SavedTextPreferences.getStoredText(MainActivity.this);
 
 
-
+        Task task = new Task(savedText);
+        todoList.setTask(task);
 
         mTextView = (TextView) findViewById(R.id.saved_tasks);
 
@@ -65,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,1);
 
 
 
