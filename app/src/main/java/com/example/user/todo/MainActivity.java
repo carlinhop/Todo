@@ -54,17 +54,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("Todo", "Button clicked ");
 
 
-
-
-
-
-
                 Intent intent = new Intent(MainActivity.this, DetailActivity.class);
                 startActivityForResult(intent,1);
-
-
-
-
 
 
             }
