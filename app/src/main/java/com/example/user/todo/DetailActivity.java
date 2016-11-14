@@ -7,8 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import org.json.*;
+
+import java.util.Date;
+
 /**
  * Created by user on 14/11/2016.
  */
@@ -20,6 +24,7 @@ public class DetailActivity extends AppCompatActivity {
     String text;
     Button mButton;
     TodoList todoList;
+    CalendarView mCalendar;
 
 
     @Override
@@ -34,12 +39,15 @@ public class DetailActivity extends AppCompatActivity {
 
         mButton = (Button) findViewById(R.id.save_button);
 
+        mCalendar = (CalendarView) findViewById(R.id.calendarView);
+
         mButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
             public void onClick(View view){
 
                 String textToSave = mEditText.getText().toString();
+                Date date = new Date(mCalendar.getDate());
 
                 JSONArray jsonArray = new JSONArray();
                 String savedText = SavedTextPreferences.getStoredText(DetailActivity.this);
@@ -56,6 +64,7 @@ public class DetailActivity extends AppCompatActivity {
                 JSONObject object = new JSONObject();
                 try{
                     object.put("Task Text", textToSave);
+                    object.put("Date", date);
                     jsonArray.put(object);
                 }
                 catch (JSONException e) {
@@ -64,23 +73,15 @@ public class DetailActivity extends AppCompatActivity {
 
                 Log.d("Todo", "Button clicked ");
 
-                Task task = new Task(text);
 
-                todoList.setTask(task);
                 Context context = view.getContext();
 
                 SavedTextPreferences.setStoredText(context, jsonArray.toString());
 
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(intent);
-
-
-
             }
         });
-
-
-
 
     }
 

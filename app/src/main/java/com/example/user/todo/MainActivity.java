@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
+import org.json.*;
 
 
 
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mTextView;
     Button mButton;
     TodoList todoList;
+    JSONArray jsonArray;
 
 
     @Override
