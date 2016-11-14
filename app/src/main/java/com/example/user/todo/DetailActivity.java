@@ -41,11 +41,16 @@ public class DetailActivity extends AppCompatActivity {
 
                 String textToSave = mEditText.getText().toString();
 
-                JSONArray jsonArray = null;
-                try {
-                    jsonArray = new JSONArray(SavedTextPreferences.getStoredText(DetailActivity.this));
-                } catch (JSONException e) {
-                    e.printStackTrace();
+                JSONArray jsonArray = new JSONArray();
+                String savedText = SavedTextPreferences.getStoredText(DetailActivity.this);
+
+                if(savedText != null && !savedText.isEmpty()) {
+                    try {
+
+                        jsonArray = new JSONArray(savedText);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 JSONObject object = new JSONObject();

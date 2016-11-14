@@ -26,7 +26,7 @@ public class TodoList {
     public String getTasksString(){
         String todoString = "";
         for(Task task: this.getTasks()){
-            todoString += String.format("Task: %s \n",task.text);
+            todoString += String.format(task.text);
         }
         return todoString;
     }
