@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import org.json.JSONObject;
 import org.json.*;
 /**
  * Created by user on 14/11/2016.
@@ -42,9 +41,17 @@ public class DetailActivity extends AppCompatActivity {
 
                 String textToSave = mEditText.getText().toString();
 
+                JSONArray jsonArray = null;
+                try {
+                    jsonArray = new JSONArray(SavedTextPreferences.getStoredText(DetailActivity.this));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
                 JSONObject object = new JSONObject();
                 try{
                     object.put("Task Text", textToSave);
+                    jsonArray.put(object);
                 }
                 catch (JSONException e) {
                     e.printStackTrace();
@@ -56,10 +63,8 @@ public class DetailActivity extends AppCompatActivity {
 
                 todoList.setTask(task);
                 Context context = view.getContext();
-//                String oldData = SavedTextPreferences.getStoredText(DetailActivity.this);
-//
-//                String newData = oldData + textToSave;
-                SavedTextPreferences.setStoredText(context, object.toString());
+
+                SavedTextPreferences.setStoredText(context, jsonArray.toString());
 
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(intent);
