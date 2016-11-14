@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Todo</string>
+    <string name="message">Write down your tasks punk!</string>
+    <string name="create_task">Create a Task</string>
+    <string name="save_task">Save</string>
+
+
+</resources>
