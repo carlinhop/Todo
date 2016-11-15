@@ -8,9 +8,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import org.json.*;
-
 import java.util.Date;
 
 /**
@@ -25,6 +25,7 @@ public class DetailActivity extends AppCompatActivity {
     Button mButton;
     TodoList todoList;
     CalendarView mCalendar;
+    CheckBox mCheckBox;
 
 
     @Override
@@ -41,6 +42,8 @@ public class DetailActivity extends AppCompatActivity {
 
         mCalendar = (CalendarView) findViewById(R.id.calendarView);
 
+        mCheckBox = (CheckBox) findViewById(R.id.checkBox);
+
         mButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -48,6 +51,8 @@ public class DetailActivity extends AppCompatActivity {
 
                 String textToSave = mEditText.getText().toString();
                 Date date = new Date(mCalendar.getDate());
+                Boolean isDone = mCheckBox.isChecked();
+
 
                 JSONArray jsonArray = new JSONArray();
                 String savedText = SavedTextPreferences.getStoredText(DetailActivity.this);
@@ -63,8 +68,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 JSONObject object = new JSONObject();
                 try{
-                    object.put("Task Text", textToSave);
-                    object.put("Date", date);
+                    object.put("text", textToSave);
+                    object.put("date", date);
+                    object.put("isDone", isDone);
                     jsonArray.put(object);
                 }
                 catch (JSONException e) {
@@ -82,6 +88,8 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
 
     }
 
