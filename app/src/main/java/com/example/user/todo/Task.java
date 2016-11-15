@@ -43,4 +43,9 @@ public class Task {
         isDone = done;
     }
 
+    @Override
+    public String toString(){
+          return String.format("%s on:  %td/%tm/%ty %n",this.text, this.date,this.date,this.date);
+    }
+
 }
