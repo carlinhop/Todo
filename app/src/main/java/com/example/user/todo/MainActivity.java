@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.view.View;
 import org.json.*;
@@ -18,10 +20,11 @@ import org.json.*;
 public class MainActivity extends AppCompatActivity {
 
 
-    TextView mTextView;
+    //TextView mTextView;
     Button mButton;
     TodoList todoList;
-    JSONArray jsonArray;
+    JSONArray jsonTasks;
+    ListView mListView;
 
 
     @Override
@@ -29,19 +32,35 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
 
-        todoList = new TodoList();
+
 
         String savedText = SavedTextPreferences.getStoredText(MainActivity.this);
 
+        try {
+            jsonTasks = new JSONArray(savedText);
+        }
+        catch (JSONException e){
+            e.printStackTrace();
+        }
 
-        Task task = new Task(savedText);
-        todoList.setTask(task);
+        todoList = new TodoList(jsonTasks);
 
-        mTextView = (TextView) findViewById(R.id.saved_tasks);
 
-        mTextView.setText(todoList.getTasksString());
+        mListView = (ListView)findViewById(R.id.my_listview);
+
+        //mTextView = (TextView) findViewById(R.id.saved_tasks);
+
+        //mTextView.setText(todoList.getTasksString());
 
         mButton = (Button) findViewById(R.id.create_button);
+
+
+        ArrayAdapter<Task> adapter =
+                new ArrayAdapter<Task>(MainActivity.this,
+                        android.R.layout.simple_list_item_1,
+                        todoList.getTasks());
+        mListView.setAdapter(adapter);
+
 
 
 
@@ -63,9 +82,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
     }
-
-
 
 }

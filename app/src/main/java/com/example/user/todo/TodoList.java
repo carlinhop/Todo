@@ -1,5 +1,9 @@
 package com.example.user.todo;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -12,6 +16,16 @@ public class TodoList {
 
     public TodoList(){
         this.tasks = new ArrayList<Task>();
+
+    }
+
+    public TodoList(JSONArray taskJsonArray){
+
+        this.tasks = new ArrayList<Task>();
+
+        for(Task task: this.jsonArrayToTaskArray(taskJsonArray)){
+            this.tasks.add(task);
+        }
 
     }
 
@@ -29,5 +43,22 @@ public class TodoList {
             todoString += String.format(task.text);
         }
         return todoString;
+    }
+
+    public ArrayList<Task> jsonArrayToTaskArray(JSONArray jsonArray){
+
+        ArrayList<Task> newTasks = new ArrayList<Task>();
+        for(int i = 0; i < jsonArray.length(); i++){
+
+            try {
+                JSONObject object = jsonArray.getJSONObject(i);
+                Task task = new Task(object.get("text").toString());
+                newTasks.add(task);
+            }
+            catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+        return newTasks;
     }
 }

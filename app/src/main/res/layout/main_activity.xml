@@ -5,13 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-
-    <TextView
-        android:id="@+id/saved_tasks"
+    <ListView
+        android:id="@+id/my_listview"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="25sp"
-        />
+        android:layout_height="wrap_content">
+    </ListView>
+
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/saved_tasks"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textSize="25sp"-->
+        <!--/>-->
 
     <Button
         android:id="@+id/create_button"
@@ -20,9 +27,6 @@
         android:layout_marginLeft="25sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
-
-
 
 
 
