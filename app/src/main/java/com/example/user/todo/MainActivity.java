@@ -38,12 +38,17 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             jsonTasks = new JSONArray(savedText);
+            todoList = new TodoList(jsonTasks);
         }
-        catch (JSONException e){
+        catch (Exception e){
             e.printStackTrace();
         }
 
-        todoList = new TodoList(jsonTasks);
+        finally {
+            todoList = new TodoList();
+        }
+
+
 
 
         mListView = (ListView)findViewById(R.id.my_listview);

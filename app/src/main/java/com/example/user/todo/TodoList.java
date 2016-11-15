@@ -17,6 +17,9 @@ public class TodoList {
     public TodoList(){
         this.tasks = new ArrayList<Task>();
 
+        Task firstTask = new Task("Create your first task!");
+        this.tasks.add(firstTask);
+
     }
 
     public TodoList(JSONArray taskJsonArray){
