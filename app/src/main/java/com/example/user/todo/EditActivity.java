@@ -27,10 +27,10 @@ import java.util.Locale;
 public class EditActivity extends DetailActivity {
 
 
-    Button mButton;
+    //Button mButton;
     TodoList todoList;
     //CalendarView mCalendar;
-    CheckBox mCheckBox;
+    //CheckBox mCheckBox;
     String mNewDate;
     Date editDate;
 
@@ -38,24 +38,37 @@ public class EditActivity extends DetailActivity {
     protected void onCreate(final Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        Log.d("EditActivity","Hola");
-
 
         Intent intent = getIntent();
+
+
         mEditText.setText(intent.getStringExtra("text"));
 
         SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyyy");
 
         Calendar editCalendar = Calendar.getInstance();
+
         try{
-        editDate = ft.parse(intent.getStringExtra("date"));}
+
+        editDate = ft.parse(intent.getStringExtra("date"));
+
+        }
+
         catch(ParseException e ){
             e.printStackTrace();
         }
+
         editCalendar.setTime(editDate);
-        Log.d("Edit Calendar",Long.toString(editCalendar.getTimeInMillis()));
+
+        Log.d("Edit Calendar", Long.toString(editCalendar.getTimeInMillis()));
+
         long editMillis= (editCalendar.getTimeInMillis());
+
         mCalendar.setDate(editMillis, true, true);
+
+        mCheckBox.setChecked(Boolean.parseBoolean(intent.getStringExtra("isDone")));
+
+
 
 
 

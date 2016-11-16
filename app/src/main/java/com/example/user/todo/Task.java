@@ -50,8 +50,6 @@ public class Task {
 
     @Override
     public String toString(){
-        //Date nDate = new String(this.date);
-        //
 
           return String.format("%s on: %s. %s" , this.text, this.date, this.isDone);
     }

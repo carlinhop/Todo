@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         mButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -94,6 +93,8 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, EditActivity.class);
                 intent.putExtra("text", selected.getText());
                 intent.putExtra("date", selected.getDate());
+                intent.putExtra("isDone", selected.getDone().toString());
+
                 startActivity(intent);
 
 

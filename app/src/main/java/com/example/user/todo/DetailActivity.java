@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import org.json.*;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -29,7 +30,9 @@ public class DetailActivity extends AppCompatActivity {
     TodoList todoList;
     CalendarView mCalendar;
     CheckBox mCheckBox;
-    String mNewDate;
+    public static String mNewDate;
+
+
 
 
     @Override
@@ -48,6 +51,10 @@ public class DetailActivity extends AppCompatActivity {
 
         mCheckBox = (CheckBox) findViewById(R.id.checkBox);
 
+        Date newDateDefault = new Date(mCalendar.getDate());
+        DetailActivity.mNewDate = Integer.toString((newDateDefault).getDay()) + "/" + Integer.toString((newDateDefault).getMonth()) + "/"+ Integer.toString((newDateDefault).getYear());
+
+
         mButton.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -55,8 +62,9 @@ public class DetailActivity extends AppCompatActivity {
 
                 String textToSave = mEditText.getText().toString();
 
+                //SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssz");
 
-                Boolean isDone = mCheckBox.isChecked();
+                //String newDateDefaultString = Integer.toString((newDateDefault).getDay()) + "/" + Integer.toString((newDateDefault).getMonth()) + "/"+ Integer.toString((newDateDefault).getYear());
 
 
                 JSONArray jsonArray = new JSONArray();
@@ -74,8 +82,8 @@ public class DetailActivity extends AppCompatActivity {
                 JSONObject object = new JSONObject();
                 try{
                     object.put("text", textToSave);
-                    object.put("date", mNewDate);
-//                    object.put("isDone", isDone);
+                    object.put("date", DetailActivity.mNewDate);
+                    object.put("isDone", Boolean.toString(mCheckBox.isChecked()));
                     jsonArray.put(object);
                 }
                 catch (JSONException e) {
@@ -99,12 +107,21 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
-                mNewDate = Integer.toString(dayOfMonth) + "/" + Integer.toString(month+1)+ "/"+year;
+                DetailActivity.mNewDate = Integer.toString(dayOfMonth) + "/" + Integer.toString(month+1)+ "/"+year;
 
-                Toast.makeText(getApplicationContext(), mNewDate, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), DetailActivity.mNewDate, Toast.LENGTH_SHORT).show();
 
             }
-        });
+         });
+
+//        mCheckBox.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                mIsChecked = mCheckBox.isChecked();
+//            }
+//        });
+
+
 
 
 
