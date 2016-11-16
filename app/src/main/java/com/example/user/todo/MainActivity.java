@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -47,15 +48,9 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
-
-
-
         mListView = (ListView)findViewById(R.id.my_listview);
 
-        //mTextView = (TextView) findViewById(R.id.saved_tasks);
 
-        //mTextView.setText(todoList.getTasksString());
 
         mButton = (Button) findViewById(R.id.create_button);
 
@@ -64,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 new ArrayAdapter<Task>(MainActivity.this,
                         android.R.layout.simple_list_item_1,
                         todoList.getTasks());
+
         mListView.setAdapter(adapter);
 
 
@@ -84,6 +80,28 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Task selected = (Task) mListView.getItemAtPosition(position);
+                Log.d("ListView:", selected + " selected");
+
+
+                Intent intent = new Intent(MainActivity.this, EditActivity.class);
+                intent.putExtra("task", selected.toString());
+                startActivity(intent);
+
+
+            }
+
+
+        });
+
+
 
 
 

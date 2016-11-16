@@ -19,7 +19,14 @@
 
         <activity
             android:name=".DetailActivity"
-            android:parentActivityName=".MainActivity">>
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+
+
+        <activity
+            android:name=".EditActivity"
+            android:parentActivityName=".MainActivity">
 
         </activity>
 

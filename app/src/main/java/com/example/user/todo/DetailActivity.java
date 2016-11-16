@@ -24,8 +24,7 @@ import java.util.Date;
 public class DetailActivity extends AppCompatActivity {
 
     EditText mEditText;
-    Task task;
-    String text;
+
     Button mButton;
     TodoList todoList;
     CalendarView mCalendar;
@@ -101,14 +100,7 @@ public class DetailActivity extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month,
                                             int dayOfMonth) {
                 mNewDate = Integer.toString(dayOfMonth) + "/" + Integer.toString(month+1)+ "/"+year;
-//                //Log.d("Calendar", Integer.toString(mCalendar.getDateTextAppearance()));
-//
-//                //Log.d("Calendar", d.toString() );
-//
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.setTimeInMillis(mNewDate);
-//
-//                Log.d("Calendar: ", Integer.toString(calendar.DATE));
+
                 Toast.makeText(getApplicationContext(), mNewDate, Toast.LENGTH_SHORT).show();
 
             }
