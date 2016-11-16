@@ -10,7 +10,11 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import org.json.*;
+
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -26,6 +30,7 @@ public class DetailActivity extends AppCompatActivity {
     TodoList todoList;
     CalendarView mCalendar;
     CheckBox mCheckBox;
+    String mNewDate;
 
 
     @Override
@@ -50,7 +55,8 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View view){
 
                 String textToSave = mEditText.getText().toString();
-                Date date = new Date(mCalendar.getDate());
+
+
                 Boolean isDone = mCheckBox.isChecked();
 
 
@@ -69,8 +75,8 @@ public class DetailActivity extends AppCompatActivity {
                 JSONObject object = new JSONObject();
                 try{
                     object.put("text", textToSave);
-                    object.put("date", date);
-                    object.put("isDone", isDone);
+                    object.put("date", mNewDate);
+//                    object.put("isDone", isDone);
                     jsonArray.put(object);
                 }
                 catch (JSONException e) {
@@ -86,6 +92,25 @@ public class DetailActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(DetailActivity.this, MainActivity.class);
                 startActivity(intent);
+            }
+        });
+
+        mCalendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month,
+                                            int dayOfMonth) {
+                mNewDate = Integer.toString(dayOfMonth) + "/" + Integer.toString(month+1)+ "/"+year;
+//                //Log.d("Calendar", Integer.toString(mCalendar.getDateTextAppearance()));
+//
+//                //Log.d("Calendar", d.toString() );
+//
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.setTimeInMillis(mNewDate);
+//
+//                Log.d("Calendar: ", Integer.toString(calendar.DATE));
+                Toast.makeText(getApplicationContext(), mNewDate, Toast.LENGTH_SHORT).show();
+
             }
         });
 

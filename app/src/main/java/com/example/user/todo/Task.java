@@ -1,6 +1,10 @@
 package com.example.user.todo;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
+
 
 /**
  * Created by user on 13/11/2016.
@@ -9,13 +13,13 @@ import java.util.Date;
 public class Task {
 
     public String text;
-    public Date date;
+    private String date;
     public Boolean isDone;
 
 
     public Task(String text){
         this.text = text;
-        this.date = new Date();
+        this.date = "no data";
         this.isDone = false;
     }
 
@@ -27,13 +31,13 @@ public class Task {
         this.text = text;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String newDate) {
 
-        this.date = date;
+        this.date = newDate;
     }
 
     public Boolean getDone() {
@@ -46,7 +50,10 @@ public class Task {
 
     @Override
     public String toString(){
-          return String.format("%s on:  %td/%tm/%ty %n",this.text, this.date,this.date,this.date);
+        //Date nDate = new String(this.date);
+        //SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+
+          return String.format("%s on: %s. %s" , this.text, this.date, this.isDone);
     }
 
 }

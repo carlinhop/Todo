@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
         }
         catch (Exception e){
             e.printStackTrace();
+            todoList = new TodoList();
+
         }
 
-        finally {
-            todoList = new TodoList();
-        }
+
 
 
 

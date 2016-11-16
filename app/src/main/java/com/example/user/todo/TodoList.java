@@ -56,6 +56,7 @@ public class TodoList {
             try {
                 JSONObject object = jsonArray.getJSONObject(i);
                 Task task = new Task(object.get("text").toString());
+                task.setDate((object.get("date").toString()));
                 newTasks.add(task);
             }
             catch (JSONException e){
