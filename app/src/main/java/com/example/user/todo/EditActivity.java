@@ -21,7 +21,7 @@ import org.json.*;
 
 public class EditActivity extends DetailActivity {
 
-    EditText mEditText;
+
     Button mButton;
     TodoList todoList;
     CalendarView mCalendar;
@@ -33,6 +33,10 @@ public class EditActivity extends DetailActivity {
         super.onCreate(savedInstanceState);
 
         Log.d("EditActivity","Hola");
+
+
+        Intent intent = getIntent();
+        mEditText.setText(intent.getStringExtra("text"));
 
 
 

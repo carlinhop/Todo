@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 Intent intent = new Intent(MainActivity.this, EditActivity.class);
-                intent.putExtra("task", selected.toString());
+                intent.putExtra("text", selected.getText());
                 startActivity(intent);
 
 
