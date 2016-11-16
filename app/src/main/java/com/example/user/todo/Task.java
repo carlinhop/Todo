@@ -51,7 +51,7 @@ public class Task {
     @Override
     public String toString(){
         //Date nDate = new String(this.date);
-        //SimpleDateFormat ft = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.ENGLISH);
+        //
 
           return String.format("%s on: %s. %s" , this.text, this.date, this.isDone);
     }

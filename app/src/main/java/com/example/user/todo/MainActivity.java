@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intent = new Intent(MainActivity.this, EditActivity.class);
                 intent.putExtra("text", selected.getText());
+                intent.putExtra("date", selected.getDate());
                 startActivity(intent);
 
 
